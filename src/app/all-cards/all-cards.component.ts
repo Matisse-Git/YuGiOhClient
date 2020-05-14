@@ -21,6 +21,10 @@ export class AllCardsComponent implements OnInit {
     length: this.length 
   };
 
+  //sort related
+  currentSortType: string;
+  currentSortDir: string;
+
   constructor(
     private api: ApiService) { }
 
@@ -29,10 +33,10 @@ export class AllCardsComponent implements OnInit {
   }
 
   getAllCards(pageIndex: number, length: number){
-    this.api.getAllCards(0, 99999).subscribe(cards => {
+    this.api.getAllCards(0, 99999, undefined, undefined).subscribe(cards => {
       this.length = cards.length;
     })
-    this.api.getAllCards(pageIndex, length).subscribe(cards => {
+    this.api.getAllCards(pageIndex, length, this.currentSortType, this.currentSortDir).subscribe(cards => {
       this.allCards = cards;
     })
   }

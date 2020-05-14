@@ -1,12 +1,29 @@
 <div class="AllCards">
+
+    <mat-form-field>
+        <mat-label>Sort</mat-label>
+        <mat-select [(value)]="currentSortType" (onchange)="getAllCards(pageEvent.pageIndex, pageEvent.pageSize)">
+            <mat-option value="name">Name</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Sort Direction</mat-label>
+        <mat-select [(value)]="currentSortDir" (onchange)="getAllCards(pageEvent.pageIndex, pageEvent.pageSize)">
+            <mat-option value="asc">Ascending</mat-option>
+            <mat-option value="desc">Descending</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+
     <mat-card *ngFor="let c of allCards">
-        <mat-card-title>	
+        <mat-card-title>
             {{c.name}}
         </mat-card-title>
         <mat-card-content>
             {{c.description}}
         </mat-card-content>
     </mat-card>
-    <mat-paginator #paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[1,2,3]" (page)="pageEvent = $event"
-        (page)="getAllCards(pageEvent.pageIndex, pageEvent.pageSize)"></mat-paginator>
+    <mat-paginator #paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[1,2,3]"
+        (page)="pageEvent = $event" (page)="getAllCards(pageEvent.pageIndex, pageEvent.pageSize)"></mat-paginator>
+
 </div>
