@@ -1,0 +1,12 @@
+<div class="AllCards">
+    <mat-card *ngFor="let c of allCards">
+        <mat-card-title>	
+            {{c.name}}
+        </mat-card-title>
+        <mat-card-content>
+            {{c.description}}
+        </mat-card-content>
+    </mat-card>
+    <mat-paginator #paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[1,2,3]" (page)="pageEvent = $event"
+        (page)="getAllCards(pageEvent.pageIndex, pageEvent.pageSize)"></mat-paginator>
+</div>

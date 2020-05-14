@@ -1,0 +1,9 @@
+.crudAction{
+    margin: 2em;
+}
+mat-form-field{
+    width: 30em;
+}
+.numberInput{
+    width: 15em;
+}

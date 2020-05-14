@@ -1,0 +1,8 @@
+.AllCards{
+    margin: 2em;
+}
+
+mat-card{
+    margin-bottom: 1em;
+    width: 30em;
+}
