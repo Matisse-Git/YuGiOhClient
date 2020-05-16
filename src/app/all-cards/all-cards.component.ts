@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ApiService } from '../api.service';
 import { isNullOrUndefined } from 'util';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'all-cards',
@@ -31,7 +32,7 @@ export class AllCardsComponent implements OnInit {
   idOptions: number[] = [];
 
   constructor(
-    private api: ApiService) { }
+    private api: ApiService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getAllCards();
@@ -74,6 +75,18 @@ export class AllCardsComponent implements OnInit {
         this.allCards.push(card);
       })
     }
+  }
+
+  deleteCard(cardID: number){
+    console.log(cardID)
+    this.api.deleteCard(cardID).subscribe( result =>{
+      console.log(result)
+        this.toastr.success('Card was deleted from the database!', 'Successful', {
+          progressBar: true,
+          closeButton: true
+        });
+        this.getAllCards()
+    })
   }
 
   logPageEvent() {

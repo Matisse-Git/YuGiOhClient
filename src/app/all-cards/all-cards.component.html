@@ -61,6 +61,9 @@
                     ATK: {{c.atk}} | DEF: {{c.def}}
                 </mat-card-footer>
 
+                <mat-card-actions>
+                    <button mat-button (click)="deleteCard(c.id)">DELETE</button>
+                </mat-card-actions>
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>

@@ -35,4 +35,8 @@ export class ApiService {
     return this.http.put(this.apiLink + "?cardtype=" + cardType,  card);
   }
 
+  deleteCard(cardID: number){
+    return this.http.delete(this.apiLink + "/" + cardID.toString())
+  }
+
 }
