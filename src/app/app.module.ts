@@ -42,6 +42,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { AllCardsComponent } from './all-cards/all-cards.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    HttpClientModule],
+    HttpClientModule,
+    FormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })

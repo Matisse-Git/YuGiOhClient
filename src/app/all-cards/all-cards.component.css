@@ -3,6 +3,16 @@
 }
 
 mat-card{
+    text-align: center;
     margin-bottom: 1em;
-    width: 30em;
+    height: 85%;
+    width: 85%;
+}
+
+mat-card-title{
+    font-size: 1.2em;
+}
+
+mat-card-content, mat-card-footer{
+    font-size: 0.8em;
 }

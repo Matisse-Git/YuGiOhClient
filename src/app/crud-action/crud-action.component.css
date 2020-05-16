@@ -7,3 +7,16 @@ mat-form-field{
 .numberInput{
     width: 15em;
 }
+
+.buttonDiv{
+    width: 100%;
+    text-align: center;
+}
+
+/*mat-grid-list{
+    border: solid black 1px;
+}
+
+mat-grid-tile{
+    border: solid black 1px;
+}*/

@@ -1,87 +1,154 @@
 <div class="crudAction">
-    <h1>Add, Delete Or Edit A Card Below:</h1>
-    <form [style.fontSize.px]="12">
-        <mat-form-field>
-            <mat-label>Card type</mat-label>
-            <mat-select [(value)]="currentCard.Type.Name">
-                <mat-option *ngFor="let ct of cardTypes" [value]="ct">
-                    {{ct}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <br>
-        <br>
-        <mat-form-field>
-            <mat-label>Name</mat-label>
-            <input matInput [(value)]="currentCard.Name">
-        </mat-form-field>
-        <br>
-        <mat-form-field>
-            <mat-label>Description</mat-label>
-            <textarea matInput rows="8"></textarea>
-        </mat-form-field>
-        <br>
 
-        <!--Fields when spell card-->
-        <div *ngIf="currentCard.Type.Name == 'Spell'">
-            <mat-form-field>
-                <mat-label>Spell type</mat-label>
-                <mat-select [(value)]="currentCard.SpellType">
-                    <mat-option *ngFor="let st of spellTypes" [value]="st">
-                        {{st}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-            <br>
-        </div>
+    <!--Titles-->
+    <mat-grid-list cols="2" rowHeight="60px">
+        <mat-grid-tile>
+            <h1>Add Or Edit A Card Below:</h1>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <h1>Following Card will be added:</h1>
+        </mat-grid-tile>
+    </mat-grid-list>
 
-        <!--Fields when monster card-->
-        <div *ngIf="currentCard.Type.Name == 'Normal Monster' || currentCard.Type.Name == 'Effect Monster'">
-            <mat-form-field class="numberInput">
-                <mat-label>ATK</mat-label>
-                <input matInput type="number" [(value)]="currentCard.ATK">
-            </mat-form-field>
-            <mat-form-field class="numberInput">
-                <mat-label>DEF</mat-label>
-                <input matInput type="number" [(value)]="currentCard.DEF">
-            </mat-form-field>
-            <br>
-            <mat-form-field class="numberInput">
-                <mat-label>Level</mat-label>
-                <mat-select [(value)]="currentCard.Level">
-                    <mat-option *ngFor="let level of [0,1,2,3,4,5,6,7,8,9,10,11,12]" [value]="level">
-                        {{level}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-            <br>
-            <mat-form-field>
-                <mat-label>Element</mat-label>
-                <input matInput [(value)]="currentCard.Element.Name">
-            </mat-form-field>
-            <br>
-            <mat-form-field>
-                <mat-label>Attribute</mat-label>
-                <input matInput [(value)]="currentCard.Attribute">
-            </mat-form-field>
-            <br>
-            <mat-form-field>
-                <mat-label>Archetype</mat-label>
-                <input matInput [(value)]="currentCard.Archetype">
-            </mat-form-field>
-        </div>
+    <mat-grid-list cols="2" rowHeight="750px">
+        <!--Input-->
+        <mat-grid-tile>
+            <form [style.fontSize.px]="12">
+                <mat-form-field>
+                    <mat-label>Card type</mat-label>
+                    <mat-select [(value)]="currentCardType">
+                        <mat-option *ngFor="let ct of cardTypes" [value]="ct">
+                            {{ct}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br>
+                <br>
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput [(ngModel)]="currentName" name="name">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <textarea matInput rows="8" [(ngModel)]="currentDescription" name="description"></textarea>
+                </mat-form-field>
+                <br>
 
-        <br>
-        <mat-form-field>
-            <mat-label>CRUD action</mat-label>
-            <mat-select [(value)]="selectedAction">
-                <mat-option value="Delete">Delete</mat-option>
-                <mat-option value="Put">Put</mat-option>
-                <mat-option value="Post">Post</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <br>
-        <a mat-flat-button color="primary" [disabled]='!isComplete'>Comfirm</a>
-    </form>
+                <!--Fields when spell card-->
+                <div *ngIf="currentCardType == 'Spell'">
+                    <mat-form-field>
+                        <mat-label>Spell type</mat-label>
+                        <mat-select [(value)]="currentSpellType">
+                            <mat-option *ngFor="let st of spellTypes" [value]="st">
+                                {{st}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                </div>
+
+                <!--Fields when monster card-->
+                <div *ngIf="currentCardType == 'Normal Monster' || currentCardType == 'Effect Monster'">
+                    <mat-form-field class="numberInput">
+                        <mat-label>ATK</mat-label>
+                        <input matInput type="number" [(ngModel)]="currentATK" name="atk">
+                    </mat-form-field>
+                    <mat-form-field class="numberInput">
+                        <mat-label>DEF</mat-label>
+                        <input matInput type="number" [(ngModel)]="currentDEF" name="def">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="numberInput">
+                        <mat-label>Level</mat-label>
+                        <mat-select [(value)]="currentLevel">
+                            <mat-option *ngFor="let level of [0,1,2,3,4,5,6,7,8,9,10,11,12]" [value]="level">
+                                {{level}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <mat-label>Element</mat-label>
+                        <input matInput [(ngModel)]="currentElement" name="element">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <mat-label>Attribute</mat-label>
+                        <input matInput [(ngModel)]="currentAttribute" name="attribute">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <mat-label>Archetype</mat-label>
+                        <input matInput [(ngModel)]="currentArchetype" name="archetype">
+                    </mat-form-field>
+                </div>
+
+                <br>
+                <mat-form-field>
+                    <mat-label>CRUD action</mat-label>
+                    <mat-select [(value)]="selectedAction">
+                        <mat-option value="Put">Put</mat-option>
+                        <mat-option value="Post">Post</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br>
+            </form>
+        </mat-grid-tile>
+        <!--Example-->
+        <mat-grid-tile>
+            <mat-list>
+                <mat-list-item>
+                    <div mat-line>Card type:</div>
+                    <div mat-line>{{currentCardType}}</div>
+                </mat-list-item>
+                <mat-list-item>
+                    <div mat-line>Name:</div>
+                    <div mat-line> {{currentName}}</div>
+                </mat-list-item>
+
+                <!--Monstercard related-->
+                <div *ngIf="currentCardType =='Normal Monster' || currentCardType =='Effect Monster'">
+                    <mat-list-item>
+                        <div mat-line>ATK:</div>
+                        <div mat-line>{{currentATK}}</div>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <div mat-line>DEF:</div>
+                        <div mat-line>{{currentDEF}}</div>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <div mat-line>Level: </div>
+                        <div mat-line>{{currentLevel}}</div>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <div mat-line>Element:</div>
+                        <div mat-line>{{currentElement}}</div>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <div mat-line>Attribute:</div>
+                        <div mat-line>{{currentAttribute}}</div>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <div mat-line>Archetype:</div>
+                        <div mat-line>{{currentArchetype}}</div>
+                    </mat-list-item>
+                </div>
+
+                <!--Spell related-->
+                <div *ngIf=" currentCardType=='Spell'">    
+                    <mat-list-item>
+                        <div mat-line>Spell type:</div>
+                        <div mat-line>{{currentSpellType}}</div>
+                    </mat-list-item>
+                </div>
+
+            </mat-list>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    <div class="buttonDiv">
+        <a mat-flat-button color="primary" (click)="sendCard()">Comfirm</a>
+    </div>
 
 </div>
