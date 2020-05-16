@@ -3,6 +3,7 @@ import { Card, MonsterCard, EffectMonsterCard, SpellCard } from '../app.module';
 import { isNull, isUndefined, isNullOrUndefined } from 'util';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiService } from '../api.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class CrudActionComponent implements OnInit {
   //CRUD action
   selectedAction: string;
   actionCompleted: boolean;
+  currentID
 
 
   cardTypes: string[] = [
@@ -43,17 +45,15 @@ export class CrudActionComponent implements OnInit {
 
   isComplete: boolean = false;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.checkFormCompletion();
-    setInterval(this.checkFormCompletion, 500);
   }
 
-  sendCard(){
+  sendCard() {
     let newCard;
     let newCardType;
-    if (this.currentCardType == "Spell"){
+    if (this.currentCardType == "Spell") {
       newCardType = "spell";
       newCard = {
         Name: this.currentName,
@@ -65,11 +65,11 @@ export class CrudActionComponent implements OnInit {
         SpellType: this.currentSpellType
       };
     }
-    else if (this.currentCardType == "Normal Monster"  || this.currentCardType == "Effect Monster"){
-      if (this.currentCardType == "Normal Monster"){
+    else if (this.currentCardType == "Normal Monster" || this.currentCardType == "Effect Monster") {
+      if (this.currentCardType == "Normal Monster") {
         newCardType = "normalmonster";
       }
-      else if (this.currentCardType == "Effect Monster"){
+      else if (this.currentCardType == "Effect Monster") {
         newCardType = "effectmonster";
       }
       newCard = {
@@ -90,12 +90,35 @@ export class CrudActionComponent implements OnInit {
       };
     }
 
-    if (this.selectedAction == "Post"){
-      this.api.postCard(newCard, newCardType).subscribe(result =>{
-        if (result != null){
+    if (this.selectedAction == "Post") {
+      this.api.postCard(newCard, newCardType).subscribe(result => {
+        console.log(result)
+        if (result != null) {
           this.actionCompleted = true;
+          this.toastr.success('Your card was added to the database!', 'Successful', {
+            progressBar: true,
+            closeButton: true
+          });
+        }
+        else {
+          this.toastr.error('Your card could not be added to the database.', 'Error', {
+            progressBar: true,
+            closeButton: true
+          });
         }
       })
+    }
+
+    if (this.selectedAction == "Put") {
+      newCard.ID = this.currentID;
+      this.api.putCard(newCard, newCardType).subscribe(result => {
+        if (result != null) {
+          this.toastr.success('Your card was edited in the database!', 'Successful', {
+            progressBar: true,
+            closeButton: true
+          });
+        }
+      });
     }
   }
 
@@ -103,7 +126,7 @@ export class CrudActionComponent implements OnInit {
     if (this.currentName == "") {
       this.isComplete = false;
     }
-    else{
+    else {
       this.isComplete = true;
     }
   }
