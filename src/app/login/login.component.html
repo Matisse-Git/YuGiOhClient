@@ -3,3 +3,7 @@
         Login with Google
     </button>
 </div>
+
+<div *ngIf="!showLogin && currentProfile">
+    {{currentProfile.name}}
+</div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, IProfile } from '../auth.service';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-
+import { CookieService } from 'ngx-cookie-service';
+ 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,22 +17,28 @@ export class LoginComponent implements OnInit {
   private redirectUrl: string = "http%3A%2F%2Flocalhost%3A4200%2Flogin";
 
   private authCode: string;
+  private accessToken: string;
   showLogin: boolean = true;
 
-  constructor(private auth: AuthService, private route: ActivatedRoute) {
+  constructor(private auth: AuthService, private route: ActivatedRoute, private cookie: CookieService) {
       this.route.queryParamMap.subscribe(params =>{
           if (params.get('code') != null){
             console.log("Code received from OAuth")
             this.showLogin = false;
             this.authCode = params.get('code');
             this.auth.postGoogleAuth(this.authCode).subscribe(resp =>{
-              console.log(resp);
+              this.accessToken = resp.access_token;
+              this.cookie.set('auth', resp.access_token);
+              this.auth.getUserInfo().subscribe( userInfo => {
+                this.currentProfile = userInfo;
+              })
             })
           }
       })
    }
   
   ngOnInit(): void {
+
   }
 
   AutherizeGoogle(){

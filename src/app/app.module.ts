@@ -47,6 +47,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AllPokemonCardsComponent } from './all-pokemon-cards/all-pokemon-cards.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,7 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     FormsModule,
     ToastrModule.forRoot()],
-  providers: [],
+  providers: [ CookieService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
