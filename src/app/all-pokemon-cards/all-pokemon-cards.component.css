@@ -1,0 +1,17 @@
+.LoadingScreen{
+    margin-top: 10em;
+    width: 100%;
+}
+
+mat-spinner{
+    margin: 0 auto;
+}
+
+mat-card{
+    width: 80%;
+}
+
+img{
+    height: 250px;
+    width: 170px;
+}

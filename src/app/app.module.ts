@@ -44,12 +44,18 @@ import { AllCardsComponent } from './all-cards/all-cards.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { AllPokemonCardsComponent } from './all-pokemon-cards/all-pokemon-cards.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CrudActionComponent,
-    AllCardsComponent
+    AllCardsComponent,
+    AllPokemonCardsComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
