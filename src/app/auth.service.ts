@@ -15,7 +15,6 @@ export class AuthService {
 
   getProfileUrl: string = "https://www.googleapis.com/userinfo/v2/me";
 
-
   constructor(private http: HttpClient, private cookie: CookieService) { }
 
   postGoogleAuth(authCode: string) {
@@ -29,6 +28,10 @@ export class AuthService {
         'Authorization': 'Bearer ' + this.cookie.get('auth')
       }
     });
+  }
+
+  logOut(){
+    this.cookie.delete('auth');
   }
 }
 

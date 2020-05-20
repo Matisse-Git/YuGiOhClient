@@ -10,8 +10,6 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LoginComponent implements OnInit {
 
-  currentProfile: IProfile;
-
   private clientID: string = "1024860671467-mn4u2u2h0ku7bb9v8en1jh0jfubqesoj.apps.googleusercontent.com";
   private clientSecret: string = "xb2w4OQVbTY20RFOv-YTWD2c";
   private redirectUrl: string = "http%3A%2F%2Flocalhost%3A4200%2Flogin";
@@ -29,9 +27,6 @@ export class LoginComponent implements OnInit {
             this.auth.postGoogleAuth(this.authCode).subscribe(resp =>{
               this.accessToken = resp.access_token;
               this.cookie.set('auth', resp.access_token);
-              this.auth.getUserInfo().subscribe( userInfo => {
-                this.currentProfile = userInfo;
-              })
             })
           }
       })

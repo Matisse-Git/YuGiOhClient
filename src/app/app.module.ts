@@ -48,6 +48,7 @@ import { AllPokemonCardsComponent } from './all-pokemon-cards/all-pokemon-cards.
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { CookieService } from 'ngx-cookie-service';
     AllCardsComponent,
     AllPokemonCardsComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

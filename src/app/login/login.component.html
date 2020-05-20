@@ -4,6 +4,8 @@
     </button>
 </div>
 
-<div *ngIf="!showLogin && currentProfile">
-    {{currentProfile.name}}
+<div *ngIf="!showLogin">
+    <button mat-flat-button color='primary' routerLink='/home'>
+        Continue to Home Page
+    </button>
 </div>
