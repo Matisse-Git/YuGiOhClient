@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
             this.auth.postGoogleAuth(this.authCode).subscribe(resp =>{
               this.accessToken = resp.access_token;
               this.cookie.set('auth', resp.access_token);
+              this.cookie.set('apiAuth', resp.id_token);
             })
           }
       })
