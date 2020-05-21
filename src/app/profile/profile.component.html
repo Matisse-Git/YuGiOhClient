@@ -1,0 +1,15 @@
+<div *ngIf="!currentUser">
+    <h2>It seems like you aren't logged in yet, click the button below to log in.</h2>
+    <button mat-flat-button color="primary">
+        <a style="text-decoration: none; color: inherit;" routerLink='/login'>Login</a>
+      </button>
+</div>
+
+<div *ngIf="currentUser">
+    <h1>{{currentUser.name}}</h1>
+    <button mat-flat-button color="primary" (click)="Logout()">
+        Logout
+    </button>
+
+</div>
+

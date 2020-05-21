@@ -1,0 +1,11 @@
+<div *ngIf="showLogin">
+    <button mat-button (click)="AutherizeGoogle()">
+        Login with Google
+    </button>
+</div>
+
+<div *ngIf="!showLogin">
+    <button mat-flat-button color='primary' routerLink='/home'>
+        Continue to Home Page
+    </button>
+</div>
