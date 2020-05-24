@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ApiService {
 
-  apiLink: string = "https://localhost:44361/api/v1/cards";
+  apiLink: string = "https://yugiohapi-278211.appspot.com/api/v1/cards";
 
   constructor(
     private http: HttpClient, private cookie: CookieService, private toastr: ToastrService) { }
