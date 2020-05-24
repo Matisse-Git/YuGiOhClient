@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   logOut(){
-    this.cookie.delete('auth');
+    this.cookie.deleteAll();
   }
 }
 

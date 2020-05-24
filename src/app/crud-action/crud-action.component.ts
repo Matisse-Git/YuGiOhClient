@@ -106,6 +106,9 @@ export class CrudActionComponent implements OnInit {
             closeButton: true
           });
         }
+      }, error => {
+        console.log(error)
+        this.toastr.error(error.message, "ERROR!")
       })
     }
 

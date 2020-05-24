@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IProfile, AuthService } from '../auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'profile',
@@ -10,7 +12,7 @@ export class ProfileComponent implements OnInit {
 
   currentUser: IProfile
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.auth.getUserInfo().subscribe( userInfo =>{
@@ -20,5 +22,9 @@ export class ProfileComponent implements OnInit {
 
   Logout(){
     this.auth.logOut();
+    this.toastr.success("Succesfully cleared cookies and logged out!", "Logged out!")
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
   }
 }

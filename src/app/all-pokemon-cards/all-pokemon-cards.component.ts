@@ -19,7 +19,6 @@ export class AllPokemonCardsComponent implements OnInit {
   getAllCards(){
     this.api.getAllCards().subscribe(results =>{
       this.allCards = results.cards;
-      console.log(this.allCards)
     })
   }
 

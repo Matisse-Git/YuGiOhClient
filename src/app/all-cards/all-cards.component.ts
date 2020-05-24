@@ -46,6 +46,8 @@ export class AllCardsComponent implements OnInit {
         const idOption = i;
         this.idOptions.push(idOption);
       }
+    }, error => {
+      this.toastr.error(error.message, "ERROR!")
     })
   }
 
@@ -56,11 +58,16 @@ export class AllCardsComponent implements OnInit {
     if (isNullOrUndefined(this.pageEvent)) {
       this.api.getAllCards(0, this.pageSize, this.currentSortType, this.currentSortDir).subscribe(cards => {
         this.allCards = cards;
+      }, error => {
+        this.toastr.error(error.message, "ERROR!")
       })
     }
     else {
       this.api.getAllCards(this.pageEvent.pageIndex, this.pageEvent.pageSize, this.currentSortType, this.currentSortDir).subscribe(cards => {
         this.allCards = cards;
+        console.log(cards)
+      }, error => {
+        this.toastr.error(error.message, "ERROR!")
       })
     }
   }
@@ -73,6 +80,8 @@ export class AllCardsComponent implements OnInit {
       this.api.getCardById(id).subscribe(card => {
         this.allCards = [];
         this.allCards.push(card);
+      }, error => {
+        this.toastr.error(error.message, "ERROR!")
       })
     }
   }
@@ -86,6 +95,8 @@ export class AllCardsComponent implements OnInit {
           closeButton: true
         });
         this.getAllCards()
+    }, error => {
+      this.toastr.error(error.message, "ERROR!")
     })
   }
 
